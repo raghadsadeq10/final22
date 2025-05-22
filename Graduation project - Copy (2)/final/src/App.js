@@ -39,6 +39,13 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
+  // جلب المنتجات من API
+  useEffect(() => {
+    axios.get("https://your-backend-api.com/products")
+      .then((response) => setProducts(response.data))
+      .catch((error) => console.error("خطأ في جلب المنتجات:", error));
+  }, []);
+
   const handleAddToCart = (product) => {
     const existingItem = cartItems.find((item) => item.id === product.id);
 
