@@ -25,8 +25,10 @@ function App() {
 
 
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import Navbar from './component/Navbar';
 import HomePage from './component/HomePage';
 import Cart from './component/Cart';
@@ -38,8 +40,9 @@ import Footer from './component/Footer';
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [products, setProducts] = useState([]); // إذا تريد استخدام في App أيضاً
 
-  // جلب المنتجات من API
+  // جلب المنتجات عند تحميل التطبيق (لو تحتاجها في App)
   useEffect(() => {
     axios.get("https://your-backend-api.com/products")
       .then((response) => setProducts(response.data))

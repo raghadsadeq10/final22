@@ -1,35 +1,35 @@
-/*import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './HomePage.css';
 import { useNavigate } from 'react-router-dom';
-import { fetchData } from './api'; // حذف Data.js
-//import products from './Data';
+import { fetchData, searchProducts } from './api';
 
-const HomePage = ({ onAddToCart }) => {
+const HomePage = ({ onAddToCart, searchTerm }) => {
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState('');
-  const [loading, setLoading] = useState(true); // افتراض أنه جاري التحميل
+  const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
 
-  // تحميل المنتجات من API
   useEffect(() => {
-    async function loadProducts() {
+    const delayDebounce = setTimeout(async () => {
       try {
-        const data = await fetchData('products'); // تأكد من صحة هذا المسار
+        setLoading(true);
+
+        let data;
+        if (searchTerm.trim() !== '') {
+          data = await searchProducts(searchTerm);
+        } else {
+          data = await fetchData('products');
+        }
+
         setProducts(data);
         setLoading(false);
       } catch (error) {
         console.error('خطأ أثناء تحميل المنتجات:', error);
         setLoading(false);
       }
-    }
+    }, 400);
 
-    loadProducts();
-  }, []);
-
-  // تصفية المنتجات حسب البحث
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+    return () => clearTimeout(delayDebounce);
+  }, [searchTerm]);
 
   const addToCart = (product) => {
     onAddToCart(product);
@@ -39,22 +39,13 @@ const HomePage = ({ onAddToCart }) => {
 
   return (
     <div className="main-container">
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="كلمات البحث..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
-
       <div className="banner">
         <img src="/images/image websit.jpg" alt="Banner" />
       </div>
 
       <div className="product-list">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map((product) => (
+        {products.length > 0 ? (
+          products.map((product) => (
             <div className="product-card" key={product._id || product.id}>
               <img src={product.image} alt={product.name} className="product-img" />
               <div className="product-info">
@@ -81,9 +72,9 @@ const HomePage = ({ onAddToCart }) => {
   );
 };
 
-export default HomePage;*/
+export default HomePage;
 
-import React, { useState, useEffect } from 'react';
+/*import React, { useState, useEffect } from 'react';
 import './HomePage.css';
 import products from './Data.jsx';
 
@@ -161,4 +152,4 @@ const HomePage = ({ onAddToCart, searchTerm }) => {
   );
 };
 
-export default HomePage;
+export default HomePage;*/
