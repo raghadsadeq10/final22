@@ -40,7 +40,11 @@ const HomePage = ({ onAddToCart, searchTerm }) => {
   return (
     <div className="main-container">
       <div className="banner">
+
+        <p className="prodact">تصفح تشكيلتنا الواسعة من قطع غيار السيارات الأصلية</p>
         <img src="/images/image websit.jpg" alt="Banner" />
+
+         <h2 className="prodact">منتجاتنا</h2>
       </div>
 
       <div className="product-list">

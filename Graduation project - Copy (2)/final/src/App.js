@@ -37,6 +37,7 @@ import Part from './component/Part';
 import Signup from './component/Signup';
 import Footer from './component/Footer';
 
+
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -102,9 +103,11 @@ function App() {
                 />
               }
             />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/part" element={<Part />} />
+           
+            <Route path="/login" element={<LoginPage />} /> 
             <Route path="/signup" element={<Signup />} />
+            <Route path="/part" element={<Part />} />
+           
           </Routes>
         </div>
 
@@ -115,3 +118,5 @@ function App() {
 }
 
 export default App;
+/*<Route path="/login" element={<LoginPage />} /> 
+ <Route path="/signup" element={<Signup />} />*/

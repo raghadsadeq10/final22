@@ -4,11 +4,26 @@
 .main-container {
   font-family: 'Arial', sans-serif;
   direction: rtl;
-  background-color: #fff;
+  /*background-color: #fff;*/
   padding: 20px 60px;
   margin: 0 auto;
   width: 100%;
   max-width: 1000px; /* يناسب شاشات اللابتوب */
+}
+
+body {
+  background-image: url('https://partsouq.com/images/background.jpg');
+  background-size: cover;       /* لتغطية الشاشة كاملة */
+  background-repeat: no-repeat; /* عدم التكرار */
+  background-attachment: fixed; /* تبقى الصورة ثابتة عند التمرير */
+  background-position: center;  /* توسيط الخلفية */
+}
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255, 255, 255, 0.10); /* خلفية بيضاء شفافة */
+  z-index: -1;
 }
 
 /* Header */
@@ -197,4 +212,13 @@
   height: 100;
   object-fit: cover;
   transition: opacity 1s ease-in-out;
+}
+
+.prodact{
+  font-family: "Tajawal", Sans-serif;
+    font-size: 50px;
+    font-weight: 400;
+    color:#f59b00;
+     text-align: center;
+ 
 }
